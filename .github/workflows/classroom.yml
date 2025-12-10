@@ -19,6 +19,18 @@ jobs:
       with:
         timeout: 10
         setup-command: ''
+    - name: Dump tests output for reporter debugging
+      run: |
+        echo "---- TESTS OUTPUT (truncated 200 lines) ----"
+        echo "${{ steps.tests.outputs.result }}" | sed -n '1,200p' || true
+        mkdir -p report
+        echo "${{ steps.tests.outputs.result }}" > report/tests_result.json || true
+      shell: bash
+    - name: Upload tests_result artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: tests-result
+        path: report/tests_result.json
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
