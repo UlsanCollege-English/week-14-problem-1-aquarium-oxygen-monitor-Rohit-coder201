@@ -1,4 +1,5 @@
-﻿"""
+﻿
+"""
 HW01 — Aquarium Oxygen Monitor (Sliding Window)
 
 Implement max_window_sum(readings, k) to return the maximum sum of any
